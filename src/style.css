@@ -1,0 +1,56 @@
+body {
+  background-color: rgb(223, 228, 232);
+  color: rgb(61, 64, 66);
+}
+
+.title {
+  padding: 15px;
+}
+
+.todo-container {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 50px;
+}
+
+.task-container {
+  display: flex;
+  justify-content: left;
+  column-gap: 5px;
+  padding-top: 10px;
+  padding-left: 13px;
+}
+
+.task-description {
+  margin-top: -0.5px;
+}
+
+.btn {
+  border: none;
+  width: 100%;
+  padding: 15px;
+}
+
+input[type=text] {
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: black;
+  width: 95%;
+}
+
+input:focus {
+  border-color: green;
+}
+
+hr {
+  color: grey;
+}
+
+.todo-input {
+  font-style: italic;
+  padding-left: 15px;
+  padding-bottom: 15px;
+}
