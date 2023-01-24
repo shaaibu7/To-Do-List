@@ -76,7 +76,6 @@ mainContainer.addEventListener('click', (e) => {
 
     const deleteItem = e.target.parentElement.parentElement.children[1].children[1];
     deleteItem.classList.toggle('remove');
-
   }
 
   if (e.target.classList.contains('fa-trash-can')) {
