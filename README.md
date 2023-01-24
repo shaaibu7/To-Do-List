@@ -1,4 +1,4 @@
-# Awesome Books-Project
+# To Do List with Webpack
 
 <a name="readme-top"></a>
 
@@ -27,7 +27,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Awesome Books-Project Setup <a name="about-project"></a>
+# 📖 To Do List with Webpack <a name="about-project"></a>
 
 This project is about building a todo list with add, remove and other features that keeps track of your daily schedule.
 
