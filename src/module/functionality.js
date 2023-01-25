@@ -15,7 +15,7 @@ export default class Features {
       const newTask = new Task(task);
       taskList.push(newTask);
       taskList.forEach((element, number) => {
-        element.index = number;
+        element.index = number + 1;
       });
       Storage.saveLocalStorage(taskList);
     }
@@ -24,6 +24,9 @@ export default class Features {
   static removeTask = (index) => {
     taskList = Storage.getLocalStorage();
     taskList.splice(index, 1);
+    taskList.forEach((task, index) => {
+      task.index = index + 1;
+    });
     Storage.saveLocalStorage(taskList);
   }
 
