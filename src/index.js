@@ -1,104 +1,71 @@
 import './style.css';
-import renderContent from './module/render.js';
-import { getLocalStorage, setLocalStorage } from './module/localStorage.js';
+import Features from './module/functionality.js';
+import Storage from './module/localstorage.js';
 
-// const ulContainer = document.querySelector('.list-content');
-const inputData = document.querySelector('.todo-input');
-// const btnElement = document.querySelector('.btn');
-const mainContainer = document.querySelector('.wrapper');
+const ulContainer = document.querySelector('.list-content');
 
-const todoList = [];
+const renderTasks = () => {
+  let taskList;
 
-const createTask = () => {
-  const taskObject = {};
-  taskObject.description = inputData.value;
-  taskObject.completed = false;
-  taskObject.index = todoList.length;
-  inputData.value = '';
-  return taskObject;
+  if (Storage.getLocalStorage() === null) {
+    taskList = [];
+  } else {
+    taskList = Storage.getLocalStorage();
+  }
+
+  let content = '';
+
+  taskList.forEach((task, id) => {
+    content += `
+    <li class="list-items">
+    <div class="render-div">
+      <input class="check" type="checkbox">
+      <input class="task-description" id="task${id}" value=${task.description} />
+    </div>
+    <div class="icon-content">
+      <i id="removeTask${id}" class="sective fa-solid fa-trash-can"></i>
+    </div>
+  </li>`;
+  });
+
+  ulContainer.innerHTML = content;
+
+  taskList.forEach((task, index) => {
+    const removeTask = document.getElementById(`removeTask${task.index}`);
+    if (removeTask) {
+      removeTask.addEventListener('click', () => {
+        Features.removeTask(index);
+        removeTask.remove();
+        renderTasks();
+      });
+    }
+  });
+
+  taskList.forEach((tasking, index) => {
+    const updatedInput = document.getElementById(`task${tasking.index}`);
+    if (updatedInput) {
+      updatedInput.addEventListener(('keydown'), (e) => {
+        if (e.code === 'Enter') {
+          e.preventDefault();
+          Features.updateTask(updatedInput.value, index);
+          renderTasks();
+
+          updatedInput.value = '';
+        }
+      });
+    }
+  });
 };
 
-mainContainer.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    if (inputData.value !== '') {
-      const taskObject = createTask();
-      renderContent(taskObject);
-      todoList.push(taskObject);
-      todoList.sort((a, b) => a.index - b.index);
-      setLocalStorage(todoList);
-      getLocalStorage();
-      e.preventDefault();
-    }
+renderTasks();
 
-    if (e.target.className === 'task-description') {
-      const element = e.target.parentElement.parentElement.children[1].children[1].id;
-      todoList.forEach((elem) => {
-        if (elem.index === Number(element)) {
-          elem.description = e.target.value;
-        }
-      });
-      setLocalStorage(todoList);
-    }
-  }
-});
+const task = document.getElementById('task');
+task.addEventListener(('keydown'), (event) => {
+  if (event.code === 'Enter') {
+    event.preventDefault();
+    Features.addTaskList(task.value);
+    renderTasks();
 
-const renderContentFromLs = () => {
-  if (getLocalStorage() !== '') {
-    getLocalStorage().forEach((element) => {
-      renderContent(element);
-    });
-  }
-};
-
-renderContentFromLs();
-
-// functionality for deleting task form LS
-
-const retrieveLs = getLocalStorage();
-localStorage.setItem('arrayList', JSON.stringify(retrieveLs));
-
-mainContainer.addEventListener('click', (e) => {
-  if (e.target.className === 'check') {
-    const taskDescription = e.target.parentElement.children[1];
-    const checkBox = e.target.parentElement.children[0];
-
-    if (checkBox.checked) {
-      taskDescription.classList.toggle('active');
-    } else {
-      taskDescription.classList.toggle('active');
-    }
-  }
-
-  if (e.target.classList.contains('fa-ellipsis-vertical')) {
-    const threeDots = e.target.parentElement.parentElement.children[1].children[0];
-
-    threeDots.classList.toggle('invisible');
-
-    const deleteItem = e.target.parentElement.parentElement.children[1].children[1];
-    deleteItem.classList.toggle('remove');
-  }
-
-  if (e.target.classList.contains('fa-trash-can')) {
-    const parentElem = e.target.parentElement.parentElement;
-    const trash = e.target.id;
-    if (todoList > 0) {
-      todoList.forEach((elem, index) => {
-        if (elem.index === Number(trash)) {
-          parentElem.remove();
-          todoList.splice(index, 1);
-        }
-      });
-
-      setLocalStorage(todoList);
-    } else {
-      retrieveLs.forEach((elem, index) => {
-        if (elem.index === Number(trash)) {
-          parentElem.remove();
-          retrieveLs.splice(index, 1);
-        }
-      });
-
-      setLocalStorage(retrieveLs);
-    }
+    task.value = '';
   }
 });
