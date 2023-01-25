@@ -31,11 +31,10 @@ const renderTasks = () => {
   ulContainer.innerHTML = content;
 
   taskList.forEach((task, index) => {
-    const removeTask = document.getElementById(`removeTask${task.index}`);
+    const removeTask = document.querySelector('.fa-trash-can');
     if (removeTask) {
       removeTask.addEventListener('click', () => {
         Features.removeTask(index);
-        removeTask.remove();
         renderTasks();
       });
     }
