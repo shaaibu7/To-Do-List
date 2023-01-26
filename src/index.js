@@ -31,7 +31,7 @@ const renderTasks = () => {
   ulContainer.innerHTML = content;
 
   taskList.forEach((task, index) => {
-    const removeTask = document.querySelector('.fa-trash-can');
+    const removeTask = document.getElementById(`removeTask${index}`);
     if (removeTask) {
       removeTask.addEventListener('click', () => {
         Features.removeTask(index);
