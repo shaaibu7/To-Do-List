@@ -40,7 +40,7 @@ body {
   outline: 0;
 }
 
-.active {
+input[type=checkbox]:checked + input.active {
   text-decoration: line-through;
 }
 
