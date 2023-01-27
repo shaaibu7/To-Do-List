@@ -13,20 +13,27 @@ const renderTasks = () => {
     taskList = Storage.getLocalStorage();
   }
 
+  let checking = '';
   let content = '';
 
   taskList.forEach((task, id) => {
+    if(task.completed === false) {
+      checking = '';
+    }else {
+      checking = 'checked';
+    }
+
     content += `
     <li class="list-items">
     <div class="render-div">
-      <input class="check" type="checkbox">
+      <input ${checking} class="check" type="checkbox" id="check${id}">
       <input class="task-description" id="task${id}" value=${task.description} />
     </div>
     <div class="icon-content">
       <i id="removeTask${id}" class="sective fa-solid fa-trash-can"></i>
     </div>
   </li>`;
-  });
+  })
 
   ulContainer.innerHTML = content;
 
@@ -54,6 +61,19 @@ const renderTasks = () => {
       });
     }
   });
+
+  taskList.forEach((item, index) => {
+    const checkElement = document.getElementById(`check${index}`);
+    checkElement.addEventListener('change', () => {
+      if(!(checkElement.checked)) {
+        Features.uncompletedTask(index);
+      } else {
+        Features.completedTask(index);
+      }
+      renderTasks();
+    });
+  });
+  
 };
 
 renderTasks();
@@ -68,3 +88,13 @@ task.addEventListener(('keydown'), (event) => {
     task.value = '';
   }
 });
+
+const ClearCompletedTasks = document.getElementById('clearall');
+
+ClearCompletedTasks.addEventListener('click', () => {
+  Features.removeCompletedTask();
+  renderTasks();
+});
+
+
+

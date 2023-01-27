@@ -35,4 +35,30 @@ export default class Features {
     taskList[index].description = newDescribe;
     Storage.saveLocalStorage(taskList);
   }
+
+  static completedTask =  (index) => {
+    taskList = Storage.getLocalStorage();
+    taskList[index].completed = true;
+    Storage.saveLocalStorage(taskList);
+  }
+
+  static uncompletedTask = (index) => {
+    taskList = Storage.getLocalStorage();
+    taskList[index].completed = false;
+    Storage.saveLocalStorage(taskList);
+  }
+
+  static reconfigure =  () => {
+    taskList.forEach((element, position) => {
+      element.index = position;
+    });
+  }
+
+  static removeCompletedTask = () => {
+    taskList = Storage.getLocalStorage();
+    taskList = taskList.filter((item) => item.completed === false);
+    this.reconfigure();
+    Storage.saveLocalStorage(taskList);
+  }
+
 }
