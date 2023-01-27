@@ -1,40 +1,70 @@
 import './style.css';
+import Features from './module/functionality.js';
+import Storage from './module/localstorage.js';
 
-const container = document.querySelector('.todo-listing');
+const ulContainer = document.querySelector('.list-content');
 
-const todoList = [
-  {
-    description: 'Read my books',
-    completed: true,
-    index: 3,
-  },
-  {
-    description: 'Study data structures',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'Learn new coding concepts',
-    completed: false,
-    index: 2,
-  },
+const renderTasks = () => {
+  let taskList;
 
-];
-
-const renderTask = () => {
-  const sortedList = todoList.sort((item1, item2) => item1.index - item2.index);
-
-  for (let i = 0; i < sortedList.length; i += 1) {
-    container.innerHTML += `
-    <div class="task-container">
-      <form class="task-form">
-        <input type="checkbox" class="checkbox">
-      </form>
-    <p class="task-description">${sortedList[i].description}</p>
-  </div>
-  <hr>
-    `;
+  if (Storage.getLocalStorage() === null) {
+    taskList = [];
+  } else {
+    taskList = Storage.getLocalStorage();
   }
+
+  let content = '';
+
+  taskList.forEach((task, id) => {
+    content += `
+    <li class="list-items">
+    <div class="render-div">
+      <input class="check" type="checkbox">
+      <input class="task-description" id="task${id}" value=${task.description} />
+    </div>
+    <div class="icon-content">
+      <i id="removeTask${id}" class="sective fa-solid fa-trash-can"></i>
+    </div>
+  </li>`;
+  });
+
+  ulContainer.innerHTML = content;
+
+  taskList.forEach((task, index) => {
+    const removeTask = document.getElementById(`removeTask${index}`);
+    if (removeTask) {
+      removeTask.addEventListener('click', () => {
+        Features.removeTask(index);
+        renderTasks();
+      });
+    }
+  });
+
+  taskList.forEach((tasking, index) => {
+    const updatedInput = document.getElementById(`task${tasking.index}`);
+    if (updatedInput) {
+      updatedInput.addEventListener(('keydown'), (e) => {
+        if (e.code === 'Enter') {
+          e.preventDefault();
+          Features.updateTask(updatedInput.value, index);
+          renderTasks();
+
+          updatedInput.value = '';
+        }
+      });
+    }
+  });
 };
 
-document.addEventListener('DOMContentLoaded', renderTask);
+renderTasks();
+
+const task = document.getElementById('task');
+task.addEventListener(('keydown'), (event) => {
+  if (event.code === 'Enter') {
+    event.preventDefault();
+    Features.addTaskList(task.value);
+    renderTasks();
+
+    task.value = '';
+  }
+});

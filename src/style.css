@@ -5,6 +5,12 @@ body {
 
 .title {
   padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sync {
+  padding-top: 25px;
 }
 
 .todo-container {
@@ -26,6 +32,16 @@ body {
 
 .task-description {
   margin-top: -0.5px;
+  border: none;
+}
+
+.task-description:focus {
+  border: none;
+  outline: 0;
+}
+
+.active {
+  text-decoration: line-through;
 }
 
 .btn {
@@ -53,4 +69,34 @@ hr {
   font-style: italic;
   padding-left: 15px;
   padding-bottom: 15px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.list-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bin {
+  /* display: none; */
+}
+
+.render-div {
+  margin-left: -30px;
+}
+
+.icon-content {
+  padding-right: 20px;
+}
+
+.invisible {
+  display: none;
+}
+
+.remove {
+  display: none;
 }
