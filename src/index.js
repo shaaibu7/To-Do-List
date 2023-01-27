@@ -27,7 +27,7 @@ const renderTasks = () => {
     <li class="list-items">
     <div class="render-div">
       <input ${checking} class="check" type="checkbox" id="check${id}">
-      <input class="task-description" id="task${id}" value=${task.description} />
+      <input class="task-description active" id="task${id}" value=${task.description} />
     </div>
     <div class="icon-content">
       <i id="removeTask${id}" class="sective fa-solid fa-trash-can"></i>
