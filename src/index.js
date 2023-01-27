@@ -17,9 +17,9 @@ const renderTasks = () => {
   let content = '';
 
   taskList.forEach((task, id) => {
-    if(task.completed === false) {
+    if (task.completed === false) {
       checking = '';
-    }else {
+    } else {
       checking = 'checked';
     }
 
@@ -33,7 +33,7 @@ const renderTasks = () => {
       <i id="removeTask${id}" class="sective fa-solid fa-trash-can"></i>
     </div>
   </li>`;
-  })
+  });
 
   ulContainer.innerHTML = content;
 
@@ -65,7 +65,7 @@ const renderTasks = () => {
   taskList.forEach((item, index) => {
     const checkElement = document.getElementById(`check${index}`);
     checkElement.addEventListener('change', () => {
-      if(!(checkElement.checked)) {
+      if (!(checkElement.checked)) {
         Features.uncompletedTask(index);
       } else {
         Features.completedTask(index);
@@ -73,7 +73,6 @@ const renderTasks = () => {
       renderTasks();
     });
   });
-  
 };
 
 renderTasks();
@@ -95,6 +94,3 @@ ClearCompletedTasks.addEventListener('click', () => {
   Features.removeCompletedTask();
   renderTasks();
 });
-
-
-

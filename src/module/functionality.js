@@ -36,7 +36,7 @@ export default class Features {
     Storage.saveLocalStorage(taskList);
   }
 
-  static completedTask =  (index) => {
+  static completedTask = (index) => {
     taskList = Storage.getLocalStorage();
     taskList[index].completed = true;
     Storage.saveLocalStorage(taskList);
@@ -48,7 +48,7 @@ export default class Features {
     Storage.saveLocalStorage(taskList);
   }
 
-  static reconfigure =  () => {
+  static reconfigure = () => {
     taskList.forEach((element, position) => {
       element.index = position;
     });
@@ -60,5 +60,4 @@ export default class Features {
     this.reconfigure();
     Storage.saveLocalStorage(taskList);
   }
-
 }
