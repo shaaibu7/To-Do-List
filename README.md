@@ -87,6 +87,8 @@ To run the project, execute the following command:
 <!-- <img src="" alt="logo" width="140"  height="auto" /> -->
 <br/>
 
+- [Visit here](https://shaaibu7.github.io/To-Do-List/dist/) for demo verson.
+
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
