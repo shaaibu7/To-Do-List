@@ -1,5 +1,5 @@
-import Task from "./task.js";
-import Storage from "./localstorage.js";
+import Task from './task.js';
+import Storage from './localstorage.js';
 
 export let taskList;
 
@@ -61,4 +61,3 @@ export default class Features {
     Storage.saveLocalStorage(taskList);
   };
 }
- 
