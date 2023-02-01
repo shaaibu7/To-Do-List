@@ -9,4 +9,9 @@ describe('check addition and removal of tasks', () => {
     newFeatures.addTaskList('task');
     expect(taskList).toHaveLength(1);
   });
+
+  test('delete task from task list', () => {
+    newFeatures.removeTask('index');
+    expect(taskList).not.toHaveLength(1)
+  })
 });
