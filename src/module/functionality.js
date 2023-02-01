@@ -2,7 +2,7 @@ import Task from './task.js';
 import Storage from './localstorage.js';
 
 // eslint-disable-next-line import/no-mutable-exports
-export let taskList;
+let taskList;
 
 if (Storage.getLocalStorage() === null) {
   taskList = [];
@@ -21,6 +21,8 @@ export default class Features {
       Storage.saveLocalStorage(taskList);
     }
   };
+
+  tskListArr = () => taskList;
 
   removeTask = (index) => {
     taskList = Storage.getLocalStorage();
