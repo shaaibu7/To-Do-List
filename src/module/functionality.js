@@ -10,7 +10,7 @@ if (Storage.getLocalStorage() === null) {
 }
 
 export default class Features {
-  static addTaskList = (task) => {
+  addTaskList = (task) => {
     if (task) {
       const newTask = new Task(task);
       taskList.push(newTask);
@@ -19,45 +19,47 @@ export default class Features {
       });
       Storage.saveLocalStorage(taskList);
     }
-  }
+  };
 
-  static removeTask = (index) => {
+  tskListArr = () => taskList;
+
+  removeTask = (index) => {
     taskList = Storage.getLocalStorage();
     taskList.splice(index, 1);
     taskList.forEach((task, index) => {
       task.index = index + 1;
     });
     Storage.saveLocalStorage(taskList);
-  }
+  };
 
-  static updateTask = (newDescribe, index) => {
+  updateTask = (newDescribe, index) => {
     taskList = Storage.getLocalStorage();
     taskList[index].description = newDescribe;
     Storage.saveLocalStorage(taskList);
-  }
+  };
 
-  static completedTask = (index) => {
+  completedTask = (index) => {
     taskList = Storage.getLocalStorage();
     taskList[index].completed = true;
     Storage.saveLocalStorage(taskList);
-  }
+  };
 
-  static uncompletedTask = (index) => {
+  uncompletedTask = (index) => {
     taskList = Storage.getLocalStorage();
     taskList[index].completed = false;
     Storage.saveLocalStorage(taskList);
-  }
+  };
 
-  static reconfigure = () => {
+  reconfigure = () => {
     taskList.forEach((element, position) => {
       element.index = position;
     });
-  }
+  };
 
-  static removeCompletedTask = () => {
+  removeCompletedTask = () => {
     taskList = Storage.getLocalStorage();
     taskList = taskList.filter((item) => item.completed === false);
     this.reconfigure();
     Storage.saveLocalStorage(taskList);
-  }
+  };
 }
