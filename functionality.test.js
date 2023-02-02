@@ -12,6 +12,6 @@ describe('check addition and removal of tasks', () => {
 
   test('delete task from task list', () => {
     newFeatures.removeTask('index');
-    expect(newFeatures.tskListArr()).not.toHaveLength(1)
-  })
+    expect(newFeatures.tskListArr()).not.toHaveLength(1);
+  });
 });
