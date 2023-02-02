@@ -1,7 +1,6 @@
 import Task from './task.js';
 import Storage from './localstorage.js';
 
-// eslint-disable-next-line import/no-mutable-exports
 let taskList;
 
 if (Storage.getLocalStorage() === null) {
@@ -33,31 +32,31 @@ export default class Features {
     Storage.saveLocalStorage(taskList);
   };
 
-  static updateTask = (newDescribe, index) => {
+  updateTask = (newDescribe, index) => {
     taskList = Storage.getLocalStorage();
     taskList[index].description = newDescribe;
     Storage.saveLocalStorage(taskList);
   };
 
-  static completedTask = (index) => {
+  completedTask = (index) => {
     taskList = Storage.getLocalStorage();
     taskList[index].completed = true;
     Storage.saveLocalStorage(taskList);
   };
 
-  static uncompletedTask = (index) => {
+  uncompletedTask = (index) => {
     taskList = Storage.getLocalStorage();
     taskList[index].completed = false;
     Storage.saveLocalStorage(taskList);
   };
 
-  static reconfigure = () => {
+  reconfigure = () => {
     taskList.forEach((element, position) => {
       element.index = position;
     });
   };
 
-  static removeCompletedTask = () => {
+  removeCompletedTask = () => {
     taskList = Storage.getLocalStorage();
     taskList = taskList.filter((item) => item.completed === false);
     this.reconfigure();
