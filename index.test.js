@@ -3,7 +3,6 @@ import Features from './src/module/functionality.js';
 
 const newFeatures = new Features();
 
-
 test('testing addition of list items', () => {
   document.body.innerHTML = `
   <input type="text" id="task-input" />
@@ -38,7 +37,6 @@ test('testing removal of task', () => {
 `;
 
   const taskInput = document.getElementById('task-input');
-  const ulContainer = document.getElementById('ul-element');
 
   // const listItem = document.createElement('li');
   // listItem.textContent = `${taskInput.value}`;
