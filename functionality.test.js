@@ -45,15 +45,3 @@ describe('remove completed, update and edit', () => {
     expect(newFeatures.tskListArr()).toHaveLength(0);
   });
 });
-
-document.body.innerHTML = `
-  <div>
-    <ul id="test-list"></ul>
-  </div>
-  <div>
-    <input id="task-input" placeholder="Add task" type="text">
-  </div>
-  <button id="clear-completed">
-    Clear completed
-  </button>
-`;
