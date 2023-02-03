@@ -18,6 +18,7 @@
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
   - [Usage](#usage)
+  - [Run-Tests](#run-test)
   - [Preview](#preview)
 - [👥 Authors](#authors)
 - [🔮 Future Features](#future-features)
@@ -60,7 +61,11 @@ This project is about building a todo list with add, remove and other features t
 
 In order to run this project you need:
 
-A Browser
+- VSCode or any other IDE.
+- node.js(preferable).
+- browser to deploy.
+- GitHub/Git.
+
 
 ### Setup
 
@@ -73,12 +78,27 @@ Clone this repository to your desired folder:
 Install this project with:
 A commandline interface e.g Gitbash
 
+- cd my-project
+- npm install
+
+
 ### Usage
 
 To run the project, execute the following command:
 **Click on the live server button on your IDE**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Run-Test
+
+To run the tests for this project, execute the following command.
+
+- npm run test
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
 
 <!-- PREVIEW -->
 
