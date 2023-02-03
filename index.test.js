@@ -23,7 +23,6 @@ describe('test dom manipulation', () => {
     function taskValue(task) {
       taskInput.value = task;
     }
-    // const taskInput = document.getElementById('task-input');
     newFeatures.addTaskList(taskValue('testing'));
 
     expect(list).toHaveLength(1);
@@ -38,10 +37,6 @@ describe('test dom manipulation', () => {
   `;
 
     const taskInput = document.getElementById('task-input');
-
-    // const listItem = document.createElement('li');
-    // listItem.textContent = `${taskInput.value}`;
-    // ulContainer.appendChild(listItem);
     const list = document.querySelectorAll('li');
     newFeatures.addTaskList(taskInput.value);
     newFeatures.removeTask('index');
