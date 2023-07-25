@@ -29,7 +29,8 @@
 
 # 📖 To Do List with Webpack <a name="about-project"></a>
 
-This project is about building a todo list with add, remove and other features that keeps track of your daily schedule.
+This web application offers a simple and effective way to manage your tasks. Add, edit, mark tasks as completed, and delete them effortlessly. Stay on top of your to-do list with this user-friendly tool that helps you stay organized and productive. Accessible from any web browser, it ensures your tasks are just a click away, making daily task management a breeze.
+
 
 ## 🛠 Built With <a name="built-with"></a>
 
